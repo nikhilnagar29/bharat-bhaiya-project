@@ -1,0 +1,301 @@
+.header {
+  background: linear-gradient(135deg, var(--navy-900), var(--navy-800));
+  padding: 8rem 0 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 50%; height: 100%;
+  background: radial-gradient(ellipse at right, rgba(27,138,71,0.12) 0%, transparent 60%);
+}
+
+/* Apply section */
+.applySection {
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--border);
+  padding: 2.5rem 0;
+}
+
+.applyLayout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Selected card preview */
+.selectedCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cardVisual {
+  width: 100%;
+  aspect-ratio: 16/10;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-600));
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.cardPlaceholder::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -20%;
+  width: 70%;
+  height: 150%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.06), transparent);
+}
+
+.cardChip {
+  width: 36px;
+  height: 28px;
+  background: linear-gradient(135deg, #d4a017, #f0c040);
+  border-radius: 5px;
+}
+
+.cardPlaceholderName {
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.cardPlaceholderBank {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.75rem;
+}
+
+.cardStripe {
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-500), var(--green-400));
+  border-radius: 2px;
+  margin-top: 0.5rem;
+}
+
+.selectedInfo {
+  background: white;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  padding: 1rem;
+}
+
+.applyForm {
+  background: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Success */
+.successBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.successIcon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--green-500), var(--green-400));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* Cards grid */
+.grid_section {
+  padding: 3rem 0 5rem;
+  background: var(--gray-50);
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.cardSkeleton {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+}
+
+.cardTile {
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition);
+}
+
+.cardTile:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-5px);
+  border-color: rgba(27,138,71,0.2);
+}
+
+.cardTileActive {
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(27,138,71,0.1);
+}
+
+/* Tile visual */
+.tileVisual {
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-600));
+  position: relative;
+  overflow: hidden;
+}
+
+.tilePlaceholder {
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.tilePlaceholder::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 60%;
+  height: 150%;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.06), transparent);
+}
+
+.tileChip {
+  width: 32px;
+  height: 24px;
+  background: linear-gradient(135deg, #d4a017, #f0c040);
+  border-radius: 4px;
+}
+
+.tileName {
+  color: white;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.tileBank {
+  color: rgba(255,255,255,0.55);
+  font-size: 0.72rem;
+}
+
+.tileBody {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.tileTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  margin-bottom: 0.15rem;
+}
+
+.tileBankLabel {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  list-style: none;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.featureDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--green-500);
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+}
+
+.tileMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.metaLabel {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.metaValue {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cardsGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .applyLayout { grid-template-columns: 1fr; }
+  .cardVisual { max-width: 280px; margin: 0 auto; }
+  .cardsGrid { grid-template-columns: 1fr; }
+  .grid_section { padding: 2rem 0 3rem; }
+}

@@ -1,0 +1,299 @@
+# GrowNsure — AI Context File
+# Generated: 2026-07-03
+# Purpose: Quick codebase context for AI assistants continuing work on this project
+
+================================================================================
+## PROJECT OVERVIEW
+================================================================================
+
+Name: GrowNsure
+Type: Full-stack financial advisory website
+Stack: Next.js 14 (App Router) + TypeScript + MongoDB (Mongoose) + NextAuth.js
+Location: /Users/yadu/Documents/Projects/Bharat-bhaiya/
+Dev server: npm run dev (runs on http://localhost:3000)
+
+Branding:
+  - Colors: Navy Blue (#0d1f3c primary) + Green (#1b8a47 accent)
+  - Font: Inter (Google Fonts, loaded via globals.css @import)
+  - NO emojis anywhere — strictly text-only content
+  - Mobile-first responsive design
+
+Admin credentials (stored in .env.local, seeded into MongoDB with bcrypt hash):
+  - Username: admin
+  - Password: bharat@92516@16590
+  - Admin panel: /admin (login) → /admin/dashboard
+
+MongoDB URI: See .env.local (cluster0.scu12.mongodb.net, DB: Bharat-bhaiya)
+
+================================================================================
+## ENVIRONMENT VARIABLES (.env.local)
+================================================================================
+
+MONGODB_URI="mongodb+srv://sociogramverifyteam:VFQRhDQfzdhPaSAW@cluster0.scu12.mongodb.net/Bharat-bhaiya"
+NEXTAUTH_SECRET="grownsure_secret_key_2024_secure_random_string_xyz"
+NEXTAUTH_URL="http://localhost:3000"
+ADMIN_INITIAL_USERNAME="admin"
+ADMIN_INITIAL_PASSWORD="bharat@92516@16590"
+
+================================================================================
+## DIRECTORY STRUCTURE
+================================================================================
+
+/Users/yadu/Documents/Projects/Bharat-bhaiya/
+├── .env.local                        ← All secrets (MongoDB, NextAuth, admin creds)
+├── next.config.ts
+├── tsconfig.json
+├── package.json
+│
+├── lib/                              ← Backend utilities & data layer
+│   ├── mongodb.ts                    ← Singleton MongoDB connection (cached)
+│   ├── auth.ts                       ← NextAuth config (CredentialsProvider + bcrypt)
+│   ├── seed.ts                       ← Run once: npx tsx lib/seed.ts
+│   └── models/
+│       ├── Admin.ts                  ← { username, passwordHash, createdAt }
+│       ├── Inquiry.ts                ← { name, phone, email, service, message, status, createdAt }
+│       ├── Service.ts                ← { title, description, subDescription, buttonText, order, isActive, slug }
+│       ├── Testimonial.ts            ← { clientName, designation, city, text, rating, isActive, createdAt }
+│       ├── CreditCard.ts             ← { name, bank, imageUrl, features[], annualFee, eligibility, isActive, order }
+│       ├── CreditCardApplication.ts  ← { fullName, mobile, email, pincode, cardId, cardName, status, createdAt }
+│       └── SiteContent.ts            ← { key, value, updatedAt } — key-value store for editable text
+│
+├── app/                              ← Next.js App Router pages
+│   ├── globals.css                   ← FULL design system: CSS variables, buttons, forms, cards, modals, tables
+│   ├── layout.tsx                    ← Root layout (Inter font link, metadata/SEO)
+│   ├── page.tsx                      ← Homepage (/)
+│   ├── page.module.css               ← Homepage-specific styles (calculator preview section)
+│   │
+│   ├── calculators/
+│   │   ├── page.tsx                  ← Calculators page with 6 tabbed calculators [CLIENT COMPONENT]
+│   │   └── page.module.css
+│   │
+│   ├── about/                        ← [NOT YET CREATED] — About page (/about)
+│   │
+│   ├── credit-cards/                 ← [NOT YET CREATED] — Credit cards listing + apply (/credit-cards)
+│   │
+│   └── api/
+│       ├── auth/[...nextauth]/route.ts   ← NextAuth handler
+│       │
+│       ├── services/route.ts             ← GET: list active services (public)
+│       ├── inquiries/route.ts            ← POST: submit inquiry (public)
+│       ├── credit-cards/route.ts         ← GET: list active credit cards (public)
+│       ├── credit-card-applications/route.ts ← POST: submit CC application (public)
+│       ├── testimonials/route.ts         ← GET: list active testimonials (public)
+│       ├── content/route.ts              ← GET: get site content as key-value map (public)
+│       │
+│       └── admin/                        ← All admin routes require getServerSession() auth check
+│           ├── inquiries/route.ts        ← GET: all inquiries
+│           ├── inquiries/[id]/route.ts   ← PATCH: update status | DELETE: remove
+│           ├── services/route.ts         ← GET: all services | POST: create service
+│           ├── services/[id]/route.ts    ← PUT: update | DELETE: remove
+│           ├── testimonials/route.ts     ← GET: all | POST: create
+│           ├── testimonials/[id]/route.ts← PUT: update | DELETE: remove
+│           ├── credit-cards/route.ts     ← GET: all | POST: create
+│           ├── credit-cards/[id]/route.ts← PUT: update | DELETE: remove
+│           ├── applications/route.ts     ← GET: all CC applications
+│           ├── applications/[id]/route.ts← PATCH: update status
+│           └── content/route.ts          ← GET: all content | PUT: upsert key-value pairs
+│
+└── components/
+    ├── layout/
+    │   ├── Navbar.tsx                ← Fixed nav, scroll-aware, mobile hamburger, glass effect
+    │   ├── Navbar.module.css
+    │   ├── Footer.tsx                ← Brand, quick links, CTA, disclaimer, admin link
+    │   └── Footer.module.css
+    │
+    ├── ui/
+    │   ├── InquiryModal.tsx          ← Reusable modal: name/phone/email/service/message form
+    │   └── InquiryModal.module.css   ← Success state styles
+    │
+    ├── sections/
+    │   ├── HeroSection.tsx           ← Full-page hero, animated bg, highlights, CTA buttons
+    │   ├── HeroSection.module.css
+    │   ├── ServicesSection.tsx       ← Card grid loaded from /api/services, opens InquiryModal
+    │   ├── ServicesSection.module.css
+    │   ├── TestimonialsSection.tsx   ← Carousel, star ratings, loaded from /api/testimonials
+    │   ├── TestimonialsSection.module.css
+    │   ├── ContactSection.tsx        ← CTA band (navy-to-green gradient), opens InquiryModal
+    │   └── ContactSection.module.css
+    │
+    └── calculators/
+        ├── Calculator.module.css     ← SHARED styles for all calculators (sliders, donut, result cards)
+        ├── SIPCalculator.tsx         ← Monthly SIP → maturity value, invested, returns + donut chart
+        ├── LumpsumCalculator.tsx     ← One-time investment → maturity + donut chart
+        ├── FDRDCalculator.tsx        ← FD (quarterly) or RD (monthly) with toggle
+        ├── EMICalculator.tsx         ← Loan EMI, total interest, total payment + donut chart
+        ├── TermInsuranceCalculator.tsx ← Age/coverage/term/smoker → estimated premium range
+        └── RetirementCalculator.tsx  ← Corpus needed + monthly SIP via 25x expense rule
+
+================================================================================
+## WHAT IS DONE (COMPLETE)
+================================================================================
+
+[x] Project scaffolded — Next.js 14 App Router, TypeScript, no Tailwind
+[x] Dependencies installed — mongoose, next-auth, bcryptjs, chart.js, react-chartjs-2
+[x] .env.local created with MongoDB URI, NextAuth secret, admin credentials
+[x] lib/mongodb.ts — Singleton connection with global cache (Next.js safe)
+[x] lib/auth.ts — NextAuth CredentialsProvider + bcrypt verification
+[x] lib/seed.ts — Seeds admin user, 6 services, 3 testimonials, 3 credit cards, site content
+[x] All 7 Mongoose models created (Admin, Inquiry, Service, Testimonial, CreditCard, CreditCardApplication, SiteContent)
+[x] All public API routes (services, inquiries, credit-cards, credit-card-applications, testimonials, content)
+[x] All admin API routes (full CRUD for services, testimonials, credit-cards; list+status for inquiries/applications; content upsert)
+[x] NextAuth route handler at /api/auth/[...nextauth]
+[x] app/globals.css — Complete design system (CSS variables, typography, buttons, forms, cards, modals, tables, animations, utilities)
+[x] app/layout.tsx — Root layout with Inter font, full SEO metadata
+[x] Navbar.tsx + Navbar.module.css — Fixed, scroll-aware, mobile hamburger, animated
+[x] Footer.tsx + Footer.module.css — Brand, quick links, disclaimer, dark navy style
+[x] InquiryModal.tsx — Reusable form modal (name/phone/email/service/message), submits to /api/inquiries, shows success state
+[x] HeroSection.tsx + CSS — Full-viewport hero, animated gradient bg, grid pattern, 3 highlight cards, CTA buttons
+[x] ServicesSection.tsx + CSS — 6 service cards from DB, hover animations, green top accent bar, Credit Cards deep-link
+[x] TestimonialsSection.tsx + CSS — Carousel slider, star ratings, avatar initials, dark navy section
+[x] ContactSection.tsx + CSS — CTA band with gradient, opens InquiryModal
+[x] app/page.tsx — Homepage assembling all sections (Hero → Services → Calc Preview → Testimonials → Contact)
+[x] app/calculators/page.tsx — 6-tab calculator page
+[x] Calculator.module.css — Shared slider/donut/result card styles
+[x] SIPCalculator.tsx — Monthly SIP with range sliders + SVG donut chart
+[x] LumpsumCalculator.tsx — One-time investment with donut chart
+[x] FDRDCalculator.tsx — FD/RD toggle, quarterly/monthly compounding, donut chart
+[x] EMICalculator.tsx — Loan EMI with principal/interest/total breakdown, donut chart
+[x] TermInsuranceCalculator.tsx — Premium range estimator (age/coverage/term/smoker)
+[x] RetirementCalculator.tsx — Corpus + SIP via 25x annual expense rule
+
+================================================================================
+## WHAT IS REMAINING (NOT YET BUILT)
+================================================================================
+
+[ ] app/about/page.tsx
+      - Separate page at /about
+      - Heading: "About Me"
+      - Bio: Bharat Rathore content (see original brief)
+      - Styled closing quote: "Growing Wealth. Protecting Futures. Building Trust."
+      - Use Navbar + Footer
+      - Content should ideally be loaded from SiteContent DB (keys: about_content, about_quote)
+
+[ ] app/credit-cards/page.tsx
+      - Lists all active credit cards from /api/credit-cards
+      - Each card shows: name, bank, imageUrl (or placeholder), features list, annual fee, eligibility
+      - Click on a card → open application form (could be modal OR navigate to /credit-cards/[id])
+      - Application form: Full Name, Mobile, Email, Pincode
+      - On submit → POST /api/credit-card-applications → success message
+      - Use Navbar + Footer
+
+[ ] Admin Panel pages (all under /admin/*):
+      - app/admin/page.tsx — Login form (username + password → signIn from next-auth/react)
+      - app/admin/layout.tsx — Admin layout with sidebar navigation (requires auth, redirect to /admin if not logged in)
+      - app/admin/dashboard/page.tsx — Overview stats (counts of inquiries, applications, services, etc.)
+      - app/admin/inquiries/page.tsx — Table of all inquiries with status badges + dropdown to change status (New/Contacted/Closed)
+      - app/admin/services/page.tsx — List services with Add/Edit/Delete controls
+      - app/admin/testimonials/page.tsx — List testimonials with Add/Edit/Delete controls
+      - app/admin/credit-cards/page.tsx — List credit cards with Add/Edit/Delete + image URL field
+      - app/admin/applications/page.tsx — Table of CC applications with status tracking
+      - app/admin/content/page.tsx — Editable text fields for hero_title, hero_tagline, hero_subtagline, about_content, about_quote, disclaimer
+
+[ ] Seed script execution:
+      Run: npx tsx lib/seed.ts
+      (Only needed once — creates admin user + default data in MongoDB)
+
+[ ] Testing & final polish:
+      - Run npm run dev and verify all pages load
+      - Verify inquiry form submission saves to DB
+      - Verify admin login works with hashed password
+      - Test all 6 calculators
+      - Test mobile responsiveness (375px breakpoint)
+      - Run npm run build to check for TypeScript/build errors
+
+================================================================================
+## KEY DESIGN PATTERNS & CONVENTIONS
+================================================================================
+
+1. STYLING:
+   - Global design tokens in app/globals.css (CSS variables: --navy-*, --green-*, --gray-*, --shadow-*, etc.)
+   - Each component has its own [Name].module.css for scoped styles
+   - Global utility classes available everywhere: .btn, .btn-primary, .btn-outline, .btn-navy, .btn-ghost,
+     .container, .section, .card, .form-group, .form-control, .badge, .modal-overlay, .modal, .table, etc.
+   - Mobile-first: Base styles for mobile, @media (min-width) for larger screens
+   - Animation: CSS transitions + @keyframes fadeIn, slideUp, shimmer, pulse
+
+2. DATA FETCHING:
+   - Public pages: fetch() from client-side useEffect or Server Component
+   - Admin pages: fetch() with credentials (session cookie sent automatically)
+   - All API responses: JSON (NextResponse.json())
+   - Auth check pattern: const session = await getServerSession(authOptions); if (!session) return 401
+
+3. COMPONENTS:
+   - 'use client' directive on all interactive components (forms, modals, calculators, carousel)
+   - Server Components for static/SSR pages
+   - InquiryModal is reused across Homepage, Services, Calculators, About pages
+   - Calculator components all accept: onAdvisor: () => void (to open inquiry modal)
+
+4. MONGODB / MONGOOSE:
+   - Always call await dbConnect() before any DB operation in API routes
+   - Model registration guard: mongoose.models.X || mongoose.model('X', Schema)
+   - Status enum on Inquiry and CreditCardApplication: 'New' | 'Contacted' | 'Closed'
+   - SiteContent: key-value store — use findOneAndUpdate with upsert:true to set content
+
+5. AUTH:
+   - NextAuth with JWT strategy, 8-hour session
+   - signIn page: /admin (custom page in authOptions.pages)
+   - Admin panel protection: check session in each API route + redirect on admin pages
+   - Passwords hashed with bcrypt (salt rounds: 12)
+
+6. IMPORTANT — DO NOT USE:
+   - No Tailwind CSS (project uses vanilla CSS + CSS Modules)
+   - No emojis anywhere (not in text, buttons, headings, or code strings)
+   - No hardcoded credentials in frontend code
+   - No email/WhatsApp notifications — inquiries stored in DB only
+
+================================================================================
+## QUICK COMMAND REFERENCE
+================================================================================
+
+# Start dev server
+npm run dev
+
+# Seed the database (run once)
+npx tsx lib/seed.ts
+
+# Type check
+npx tsc --noEmit
+
+# Build for production
+npm run build
+
+# Install type definitions if missing
+npm install --save-dev @types/bcryptjs
+
+================================================================================
+## SITE PAGES SUMMARY
+================================================================================
+
+/                 → Homepage (Hero + Services + Calculator Preview + Testimonials + Contact)
+/about            → About Bharat Rathore (separate page) [NOT BUILT YET]
+/calculators      → 6 tabbed calculators (SIP, Lumpsum, FD/RD, EMI, Term Insurance, Retirement)
+/credit-cards     → Credit card listings + apply form [NOT BUILT YET]
+/admin            → Admin login [NOT BUILT YET]
+/admin/dashboard  → Admin overview [NOT BUILT YET]
+/admin/inquiries  → Inquiry management [NOT BUILT YET]
+/admin/services   → Service management [NOT BUILT YET]
+/admin/testimonials → Testimonial management [NOT BUILT YET]
+/admin/credit-cards → Credit card management [NOT BUILT YET]
+/admin/applications → CC application management [NOT BUILT YET]
+/admin/content    → Site content editor [NOT BUILT YET]
+
+================================================================================
+## PACKAGES INSTALLED
+================================================================================
+
+next                  — Framework
+react, react-dom      — React
+typescript            — TypeScript
+mongoose              — MongoDB ODM
+next-auth             — Authentication (CredentialsProvider, JWT sessions)
+bcryptjs              — Password hashing (bcrypt, 12 rounds)
+chart.js              — Chart library (imported in calculators but SVG donut used instead)
+react-chartjs-2       — React wrapper for Chart.js (available but SVG used for donut charts)
+
+NOTE: Calculator charts are currently implemented as pure SVG donut charts (no Chart.js dependency
+at runtime), keeping bundle size minimal. chart.js/react-chartjs-2 are available if needed for
+more complex charts in admin dashboard.
+
+================================================================================

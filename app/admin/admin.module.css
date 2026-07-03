@@ -1,0 +1,323 @@
+/* Shared styles for all admin pages */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Page header */
+.pageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.pageTitle {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--navy-800);
+  margin-bottom: 0.2rem;
+}
+
+.pageSub {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Filter buttons */
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filterBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.875rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border);
+  background: white;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.filterBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.filterActive {
+  background: var(--navy-800) !important;
+  border-color: var(--navy-800) !important;
+  color: white !important;
+}
+
+.filterCount {
+  background: rgba(255,255,255,0.15);
+  padding: 0.1rem 0.4rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+}
+
+.filterActive .filterCount {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Table card */
+.tableCard {
+  background: white;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.emptyCell {
+  text-align: center;
+  padding: 3rem 1rem !important;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.nameCell { font-weight: 600; color: var(--navy-800); }
+.emailCell { color: var(--text-secondary); font-size: 0.85rem; }
+.serviceCell { font-size: 0.85rem; color: var(--text-secondary); max-width: 140px; }
+.dateCell { font-size: 0.82rem; color: var(--text-muted); white-space: nowrap; }
+
+/* Actions in table */
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.detailBtn {
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  background: var(--gray-100);
+  border: 1px solid var(--border);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--navy-700);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.detailBtn:hover {
+  background: var(--navy-800);
+  color: white;
+  border-color: var(--navy-800);
+}
+
+.statusSelect {
+  padding: 0.3rem 0.5rem;
+  border-radius: 6px;
+  border: 1.5px solid var(--border);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: white;
+  cursor: pointer;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.statusSelect:focus {
+  border-color: var(--accent);
+}
+
+/* Detail modal */
+.detailGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.625rem 0.75rem;
+  background: var(--gray-50);
+  border-radius: 8px;
+  gap: 1rem;
+}
+
+.detailLabel {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+
+.detailVal {
+  font-size: 0.875rem;
+  color: var(--navy-800);
+  font-weight: 500;
+  text-align: right;
+}
+
+.detailMessage {
+  background: var(--gray-50);
+  border-radius: 8px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.messageText {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* CMS content grid */
+.contentGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.contentCard {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.contentLabel {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+/* CRUD list items */
+.listItem {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: all var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.listItem:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.listItemInfo { flex: 1; }
+.listItemTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  margin-bottom: 0.3rem;
+}
+
+.listItemDesc {
+  font-size: 0.825rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.listItemActions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.editBtn {
+  padding: 0.35rem 0.875rem;
+  border-radius: 6px;
+  background: var(--navy-800);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.editBtn:hover { background: var(--navy-700); }
+
+.deleteBtn {
+  padding: 0.35rem 0.875rem;
+  border-radius: 6px;
+  background: rgba(239,68,68,0.08);
+  color: #dc2626;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(239,68,68,0.2);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.deleteBtn:hover {
+  background: #dc2626;
+  color: white;
+}
+
+.addBtn {
+  display: inline-flex;
+}
+
+.formCard {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.formTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.formFull { grid-column: 1 / -1; }
+
+.formActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .pageHeader { flex-direction: column; }
+  .formGrid { grid-template-columns: 1fr; }
+  .listItem { flex-direction: column; }
+  .listItemActions { flex-wrap: wrap; }
+}

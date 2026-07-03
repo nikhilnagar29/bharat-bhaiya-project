@@ -1,0 +1,112 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 60%, #0f2a4a 100%);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.page::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 60%;
+  height: 140%;
+  background: radial-gradient(ellipse, rgba(27,138,71,0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.card {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.logoMark {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--green-500), var(--green-400));
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 900;
+  font-size: 1.25rem;
+  box-shadow: 0 3px 10px rgba(27,138,71,0.4);
+}
+
+.logoText {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--navy-800);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.logoSub {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 1.5rem;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--navy-800);
+  margin-bottom: 0.25rem;
+}
+
+.subheading {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.backLink {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.link {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.link:hover { color: var(--accent); }

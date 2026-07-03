@@ -1,0 +1,226 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 7rem 0 5rem;
+}
+
+/* Background */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.bgGrad1 {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 50%, #0f2a4a 100%);
+}
+
+.bgGrad2 {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 70%;
+  height: 140%;
+  background: radial-gradient(ellipse at center, rgba(27, 138, 71, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Content */
+.content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Text column */
+.textCol {
+  color: white;
+}
+
+.overline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  background: rgba(27, 138, 71, 0.15);
+  border: 1px solid rgba(27, 138, 71, 0.3);
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-300);
+  margin-bottom: 1.5rem;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: var(--green-400);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+.title {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.25rem;
+}
+
+.brand {
+  background: linear-gradient(135deg, #ffffff, var(--green-300));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.taglineAccent {
+  color: var(--green-400);
+}
+
+.sub {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 440px;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.badge {
+  padding: 0.3rem 0.75rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Highlights */
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.highlight {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.highlight:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(27, 138, 71, 0.4);
+  transform: translateX(4px);
+}
+
+.highlightNum {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var(--green-500);
+  opacity: 0.6;
+  line-height: 1;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.highlightTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.highlightDesc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.scrollLine {
+  width: 60px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile */
+@media (max-width: 1024px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .sub { max-width: 100%; }
+}
+
+@media (max-width: 640px) {
+  .hero { padding: 6rem 0 4rem; }
+  .ctas { flex-direction: column; }
+  .ctas .btn { width: 100%; justify-content: center; }
+  .highlightNum { font-size: 1.3rem; }
+  .scrollIndicator { display: none; }
+}

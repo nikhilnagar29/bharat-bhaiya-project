@@ -1,66 +1,52 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link';
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import HeroSection from '@/components/sections/HeroSection';
+import ServicesSection from '@/components/sections/ServicesSection';
+import TestimonialsSection from '@/components/sections/TestimonialsSection';
+import ContactSection from '@/components/sections/ContactSection';
+import styles from './page.module.css';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Navbar />
+      <main>
+        <HeroSection />
+        <ServicesSection />
+
+        {/* Calculators preview */}
+        <section className={styles.calcPreview}>
+          <div className="container">
+            <div className={styles.calcInner}>
+              <div>
+                <span className="label text-green">Financial Tools</span>
+                <h2 className="heading-2" style={{ color: 'var(--navy-800)', marginTop: '0.5rem' }}>
+                  Plan Your Future with Our Calculators
+                </h2>
+                <p className="body-lg text-muted" style={{ maxWidth: 480, marginTop: '0.75rem' }}>
+                  Use our interactive calculators to estimate SIPs, EMIs, insurance premiums, retirement corpus, and more — instantly, without any sign-up.
+                </p>
+                <Link href="/calculators" className="btn btn-primary" style={{ marginTop: '1.5rem' }} id="calc-preview-cta">
+                  Explore Calculators
+                </Link>
+              </div>
+              <div className={styles.calcCards}>
+                {['SIP Calculator', 'Lumpsum Calculator', 'FD / RD Calculator', 'EMI / Loan Calculator', 'Term Insurance Estimator', 'Retirement Planner'].map((c) => (
+                  <Link href="/calculators" key={c} className={styles.calcCard}>
+                    <span className={styles.calcCardDot} />
+                    {c}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <TestimonialsSection />
+        <ContactSection />
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }

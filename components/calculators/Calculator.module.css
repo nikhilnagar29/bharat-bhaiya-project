@@ -1,0 +1,244 @@
+.calc {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header { margin-bottom: 0.5rem; }
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Inputs */
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.inputHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputValue {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  background: var(--gray-50);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+}
+
+/* Slider */
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--gray-200);
+  outline: none;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--green-500);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(27,138,71,0.4);
+  border: 2px solid white;
+  transition: all var(--transition);
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(27,138,71,0.5);
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--green-500);
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Results */
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Donut */
+.chartWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.donut {
+  width: 160px;
+  height: 160px;
+  filter: drop-shadow(0 4px 12px rgba(13,31,60,0.12));
+}
+
+.donutLabel {
+  font-size: 10px;
+  fill: var(--gray-500);
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+.donutValue {
+  font-size: 11px;
+  fill: var(--navy-800);
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+.legend {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Result cards */
+.resultCards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.resultCard {
+  padding: 0.875rem 1rem;
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resultCardMain {
+  background: linear-gradient(135deg, var(--navy-900), var(--navy-800));
+  border-color: transparent;
+}
+
+.resultLabel {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.resultCardMain .resultLabel {
+  color: rgba(255,255,255,0.65);
+}
+
+.resultAmt {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.resultAmtMain {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--green-400);
+}
+
+.disclaimer {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Reusable select style for calc */
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Grid helpers for other calcs */
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.resultRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+}
+
+.rowLabel {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.rowValue {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy-800);
+}
+
+.highlight {
+  background: linear-gradient(135deg, var(--navy-900), var(--navy-800));
+  border-color: transparent;
+}
+
+.highlight .rowLabel { color: rgba(255,255,255,0.65); }
+.highlight .rowValue { color: var(--green-400); font-size: 1.05rem; }
+
+@media (max-width: 900px) {
+  .body { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .grid2 { grid-template-columns: 1fr; }
+}
