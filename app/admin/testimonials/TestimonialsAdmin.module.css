@@ -1,0 +1,164 @@
+/* ─── Image Upload Section ─── */
+.imageSection {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.imageUploadArea {
+  margin-top: 0.5rem;
+}
+
+/* Upload button (when no image) */
+.uploadBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 320px;
+  padding: 1.25rem 1.5rem;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-md);
+  background: var(--gray-50);
+  color: var(--gray-600);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: inherit;
+}
+
+.uploadBtn:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--green-50);
+  color: var(--green-700);
+}
+
+.uploadBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.uploadBtnText {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--gray-300);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Preview (when image is selected) */
+.imagePreview {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem;
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  width: fit-content;
+}
+
+.previewImg {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--white);
+  box-shadow: var(--shadow-md);
+}
+
+.imageActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.changeBtn {
+  padding: 0.45rem 1rem;
+  background: var(--dark-800);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition);
+}
+
+.changeBtn:hover:not(:disabled) {
+  background: var(--dark-700);
+}
+
+.changeBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.removeBtn {
+  padding: 0.45rem 1rem;
+  background: transparent;
+  color: #dc2626;
+  border: 1.5px solid #fca5a5;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition);
+}
+
+.removeBtn:hover {
+  background: #fef2f2;
+  border-color: #dc2626;
+}
+
+.imageHint {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ─── List avatar ─── */
+.listAvatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.listAvatarImg {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.listAvatarInitials {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-600), var(--green-500));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+}

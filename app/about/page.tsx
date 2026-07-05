@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import styles from './page.module.css';
@@ -29,7 +30,7 @@ export default function AboutPage() {
               {/* Left — avatar & credentials */}
               <aside className={styles.aside}>
                 <div className={styles.avatar}>
-                  <span className={styles.avatarInitial}>B</span>
+                  <Image src="/bharat.png" alt="Bharat Rathore" width={180} height={180} className={styles.avatarImg} unoptimized />
                 </div>
                 <div className={styles.asideCard}>
                   <p className={styles.advisorName}>Bharat Rathore</p>

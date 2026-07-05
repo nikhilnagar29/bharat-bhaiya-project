@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import styles from './page.module.css';
@@ -92,8 +93,15 @@ export default function CreditCardsPage() {
                 <div className={styles.selectedCard}>
                   <div className={styles.cardVisual}>
                     {selected.imageUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={selected.imageUrl} alt={selected.name} className={styles.cardImg} />
+                      <Image
+                        src={selected.imageUrl}
+                        alt={selected.name}
+                        width={400}
+                        height={250}
+                        className={styles.cardImg}
+                        unoptimized
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 10 }}
+                      />
                     ) : (
                       <div className={styles.cardPlaceholder}>
                         <div className={styles.cardChip} />
@@ -104,7 +112,7 @@ export default function CreditCardsPage() {
                     )}
                   </div>
                   <div className={styles.selectedInfo}>
-                    <h3 className="heading-4" style={{ color: 'var(--navy-800)' }}>{selected.name}</h3>
+                    <h3 className="heading-4" style={{ color: 'var(--dark-800)' }}>{selected.name}</h3>
                     <p className="body-sm text-muted">{selected.bank}</p>
                     <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
                       <strong>Annual Fee:</strong> {selected.annualFee}
@@ -117,7 +125,7 @@ export default function CreditCardsPage() {
                   {success ? (
                     <div className={styles.successBox}>
                       <div className={styles.successIcon}>&#10003;</div>
-                      <h3 className="heading-4" style={{ color: 'var(--navy-800)', margin: '1rem 0 0.5rem' }}>
+                      <h3 className="heading-4" style={{ color: 'var(--dark-800)', margin: '1rem 0 0.5rem' }}>
                         Application Submitted
                       </h3>
                       <p className="body-md text-muted">
@@ -133,7 +141,7 @@ export default function CreditCardsPage() {
                     </div>
                   ) : (
                     <>
-                      <h3 className="heading-4" style={{ color: 'var(--navy-800)', marginBottom: '1.25rem' }}>
+                      <h3 className="heading-4" style={{ color: 'var(--dark-800)', marginBottom: '1.25rem' }}>
                         Apply for {selected.name}
                       </h3>
                       {error && <div className="alert alert-error" style={{ marginBottom: '1rem' }}>{error}</div>}
@@ -180,7 +188,7 @@ export default function CreditCardsPage() {
           <div className="container">
             {!selected && (
               <div className="section-header" style={{ textAlign: 'left', marginBottom: '2rem' }}>
-                <h2 className="heading-2" style={{ color: 'var(--navy-800)' }}>
+                <h2 className="heading-2" style={{ color: 'var(--dark-800)' }}>
                   Available Credit Cards
                 </h2>
                 <p className="body-md text-muted" style={{ marginTop: '0.5rem' }}>
@@ -206,8 +214,14 @@ export default function CreditCardsPage() {
                       {/* Card visual */}
                       <div className={styles.tileVisual}>
                         {card.imageUrl ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={card.imageUrl} alt={card.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 10 }} />
+                          <Image
+                            src={card.imageUrl}
+                            alt={card.name}
+                            width={400}
+                            height={250}
+                            unoptimized
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 10 }}
+                          />
                         ) : (
                           <div className={styles.tilePlaceholder}>
                             <div className={styles.tileChip} />

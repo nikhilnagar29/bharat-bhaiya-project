@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import styles from './TestimonialsSection.module.css';
 
 interface Testimonial {
@@ -9,6 +10,7 @@ interface Testimonial {
   city?: string;
   text: string;
   rating?: number;
+  imageUrl?: string;
 }
 
 function StarRating({ rating }: { rating: number }) {
@@ -68,8 +70,22 @@ export default function TestimonialsSection() {
                   {t.rating && <StarRating rating={t.rating} />}
                   <p className={styles.text}>{t.text}</p>
                   <div className={styles.client}>
-                    <div className={styles.avatar}>
-                      {t.clientName.charAt(0).toUpperCase()}
+                    {/* Photo or initials avatar */}
+                    <div className={styles.avatarWrap}>
+                      {t.imageUrl ? (
+                        <Image
+                          src={t.imageUrl}
+                          alt={t.clientName}
+                          width={48}
+                          height={48}
+                          className={styles.avatarImg}
+                          unoptimized
+                        />
+                      ) : (
+                        <div className={styles.avatar}>
+                          {t.clientName.charAt(0).toUpperCase()}
+                        </div>
+                      )}
                     </div>
                     <div>
                       <p className={styles.name}>{t.clientName}</p>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Footer.module.css';
 
 const quickLinks = [
@@ -16,11 +17,9 @@ export default function Footer() {
         <div className={styles.top}>
           {/* Brand */}
           <div className={styles.brand}>
-            <div className={styles.logo}>
-              <span className={styles.logoMark}>G</span>
-              <span className={styles.logoText}>
-                Grow<span className={styles.accent}>Nsure</span>
-              </span>
+            <div className={styles.logo} style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '1rem' }}>
+              <Image src="/logo.png" alt="GrowNsure Logo" width={36} height={36} style={{ objectFit: 'contain' }} />
+              <Image src="/name.png" alt="GrowNsure" width={160} height={32} style={{ objectFit: 'contain' }} />
             </div>
             <p className={styles.tagline}>Financial Solutions For A Secure Future</p>
             <p className={styles.sub}>
@@ -30,6 +29,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className={styles.col}>
+            <div className={styles.greenLine} />
             <h4 className={styles.colHeading}>Quick Links</h4>
             <ul className={styles.colLinks}>
               {quickLinks.map((l) => (
@@ -44,6 +44,7 @@ export default function Footer() {
 
           {/* Contact CTA */}
           <div className={styles.col}>
+            <div className={styles.greenLine} />
             <h4 className={styles.colHeading}>Get in Touch</h4>
             <p className={styles.ctaText}>
               Ready to start your financial journey? Our advisor is here to guide you.
@@ -58,6 +59,9 @@ export default function Footer() {
         <div className={styles.disclaimer}>
           <p className={styles.disclaimerText}>
             <strong>Disclaimer:</strong> All investments are subject to market, credit, liquidity, and other associated risks. Returns are not guaranteed, and past performance is not indicative of future results. Before making any investment decision, please assess your financial goals, risk appetite, and investment objectives carefully. Investors are advised to consult a qualified financial advisor and read all relevant documents, terms, and conditions before investing.
+          </p>
+          <p className={styles.disclaimerText} style={{ marginTop: '0.75rem' }}>
+            AP registration number: <strong>303670</strong> &nbsp;|&nbsp; SEBI registration number: <strong>INZ000161534</strong>
           </p>
         </div>
 

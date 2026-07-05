@@ -1,17 +1,31 @@
 .section {
   padding: 5rem 0;
-  background: linear-gradient(135deg, var(--navy-800) 0%, var(--green-700) 100%);
+  background: var(--dark-800);
   position: relative;
   overflow: hidden;
 }
 
+/* Subtle green glow accents */
 .section::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(27,138,71,0.2) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(13,31,60,0.3) 0%, transparent 50%);
+  top: -30%;
+  left: -5%;
+  width: 45%;
+  height: 160%;
+  background: radial-gradient(ellipse, rgba(34, 197, 94, 0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  right: -5%;
+  width: 35%;
+  height: 120%;
+  background: radial-gradient(ellipse, rgba(34, 197, 94, 0.05) 0%, transparent 65%);
+  pointer-events: none;
 }
 
 .inner {
@@ -28,14 +42,15 @@
 
 .overline {
   display: inline-block;
-  padding: 0.3rem 0.9rem;
-  background: rgba(255,255,255,0.15);
+  padding: 0.3rem 1rem;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.25);
   border-radius: 9999px;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.8);
+  color: var(--green-400);
   margin-bottom: 1rem;
 }
 
@@ -49,7 +64,7 @@
 
 .note {
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 @media (max-width: 768px) {

@@ -21,7 +21,7 @@ export default function HomePage() {
             <div className={styles.calcInner}>
               <div>
                 <span className="label text-green">Financial Tools</span>
-                <h2 className="heading-2" style={{ color: 'var(--navy-800)', marginTop: '0.5rem' }}>
+                <h2 className="heading-2" style={{ color: 'var(--dark-800)', marginTop: '0.5rem' }}>
                   Plan Your Future with Our Calculators
                 </h2>
                 <p className="body-lg text-muted" style={{ maxWidth: 480, marginTop: '0.75rem' }}>

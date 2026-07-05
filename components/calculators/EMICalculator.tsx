@@ -67,8 +67,8 @@ export default function EMICalculator({ onAdvisor }: CalcProps) {
           <div className={styles.chartWrap}>
             <svg viewBox="0 0 120 120" className={styles.donut}>
               <circle cx="60" cy="60" r="48" fill="none" stroke="var(--gray-100)" strokeWidth="16" />
-              <circle cx="60" cy="60" r="48" fill="none" stroke="var(--navy-700)" strokeWidth="16" strokeDasharray={`${loanPct * 3.016} 301.6`} strokeDashoffset="75.4" strokeLinecap="round" />
-              <circle cx="60" cy="60" r="48" fill="none" stroke="#ef4444" strokeWidth="16" strokeDasharray={`${interestPct * 3.016} 301.6`} strokeDashoffset={75.4 - loanPct * 3.016} strokeLinecap="round" />
+              <circle cx="60" cy="60" r="48" fill="none" stroke="var(--navy-700)" strokeWidth="16" strokeDasharray={`${loanPct * 3.016} ${interestPct * 3.016}`} strokeDashoffset="75.4" strokeLinecap="round" style={{ transition: 'stroke-dasharray 0.5s ease' }} />
+              <circle cx="60" cy="60" r="48" fill="none" stroke="#ef4444" strokeWidth="16" strokeDasharray={`${interestPct * 3.016} ${loanPct * 3.016}`} strokeDashoffset={75.4 - loanPct * 3.016} strokeLinecap="round" style={{ transition: 'stroke-dasharray 0.5s ease' }} />
               <text x="60" y="55" textAnchor="middle" className={styles.donutLabel}>Total</text>
               <text x="60" y="72" textAnchor="middle" className={styles.donutValue}>{formatINR(result.totalPayment).replace('Rs. ', '')}</text>
             </svg>

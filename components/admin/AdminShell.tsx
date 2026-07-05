@@ -3,6 +3,7 @@ import { useSession, signOut } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './AdminShell.module.css';
 
 const navItems = [
@@ -43,9 +44,9 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
       <aside className={`${styles.sidebar} ${sidebarOpen ? styles.sidebarOpen : ''}`}>
         <div className={styles.sidebarInner}>
           <div className={styles.brand}>
-            <div className={styles.logoMark}>G</div>
-            <div>
-              <p className={styles.brandName}>GrowNsure</p>
+            <Image src="/logo.png" alt="GrowNsure Logo" width={32} height={32} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem' }}>
+              <Image src="/name.png" alt="GrowNsure" width={110} height={22} style={{ objectFit: 'contain' }} />
               <p className={styles.brandSub}>Admin Panel</p>
             </div>
           </div>

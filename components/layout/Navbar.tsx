@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Navbar.module.css';
 
 const navLinks = [
@@ -25,11 +26,9 @@ export default function Navbar() {
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} role="navigation" aria-label="Main navigation">
       <div className={`container ${styles.inner}`}>
         {/* Logo */}
-        <Link href="/" className={styles.logo} aria-label="GrowNsure Home">
-          <span className={styles.logoMark}>G</span>
-          <span className={styles.logoText}>
-            Grow<span className={styles.logoAccent}>Nsure</span>
-          </span>
+        <Link href="/" className={styles.logo} aria-label="GrowNsure Home" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <Image src="/logo.png" alt="GrowNsure Logo" width={32} height={32} style={{ objectFit: 'contain' }} />
+          <Image src="/name.png" alt="GrowNsure" width={140} height={28} style={{ objectFit: 'contain' }} />
         </Link>
 
         {/* Desktop nav */}
@@ -44,7 +43,7 @@ export default function Navbar() {
         </ul>
 
         {/* CTA */}
-        <Link href="/#contact" className={`btn btn-primary btn-sm ${styles.cta}`}>
+        <Link href="/#contact" className={`btn btn-dark btn-sm ${styles.cta}`}>
           Get in Touch
         </Link>
 

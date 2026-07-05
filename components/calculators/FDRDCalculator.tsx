@@ -78,8 +78,8 @@ export default function FDRDCalculator({ onAdvisor }: CalcProps) {
           <div className={styles.chartWrap}>
             <svg viewBox="0 0 120 120" className={styles.donut}>
               <circle cx="60" cy="60" r="48" fill="none" stroke="var(--gray-100)" strokeWidth="16" />
-              <circle cx="60" cy="60" r="48" fill="none" stroke="var(--navy-700)" strokeWidth="16" strokeDasharray={`${investedPct * 3.016} 301.6`} strokeDashoffset="75.4" strokeLinecap="round" />
-              <circle cx="60" cy="60" r="48" fill="none" stroke="var(--green-500)" strokeWidth="16" strokeDasharray={`${returnsPct * 3.016} 301.6`} strokeDashoffset={75.4 - investedPct * 3.016} strokeLinecap="round" />
+              <circle cx="60" cy="60" r="48" fill="none" stroke="var(--navy-700)" strokeWidth="16" strokeDasharray={`${investedPct * 3.016} ${returnsPct * 3.016}`} strokeDashoffset="75.4" strokeLinecap="round" style={{ transition: 'stroke-dasharray 0.5s ease' }} />
+              <circle cx="60" cy="60" r="48" fill="none" stroke="var(--green-500)" strokeWidth="16" strokeDasharray={`${returnsPct * 3.016} ${investedPct * 3.016}`} strokeDashoffset={75.4 - investedPct * 3.016} strokeLinecap="round" style={{ transition: 'stroke-dasharray 0.5s ease' }} />
               <text x="60" y="55" textAnchor="middle" className={styles.donutLabel}>Maturity</text>
               <text x="60" y="72" textAnchor="middle" className={styles.donutValue}>{formatINR(result.maturity).replace('Rs. ', '')}</text>
             </svg>

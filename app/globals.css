@@ -4,50 +4,52 @@
    CSS CUSTOM PROPERTIES
    ===================== */
 :root {
-  /* Navy */
-  --navy-900: #080f1e;
-  --navy-800: #0d1f3c;
-  --navy-700: #14294f;
-  --navy-600: #1a3460;
-  --navy-500: #1e3f73;
+  /* Green — primary brand accent (vivid, like Finology) */
+  --green-700: #15803d;
+  --green-600: #16a34a;
+  --green-500: #22c55e;
+  --green-400: #4ade80;
+  --green-300: #86efac;
+  --green-50:  #f0fdf4;
 
-  /* Green */
-  --green-700: #14532d;
-  --green-600: #166534;
-  --green-500: #1b8a47;
-  --green-400: #22a558;
-  --green-300: #34c468;
+  /* Dark (for text, buttons, footer) */
+  --dark-900: #0a0a0a;
+  --dark-800: #111111;
+  --dark-700: #1c1c1c;
+  --dark-600: #2d2d2d;
 
-  /* Neutrals */
+  /* Neutrals / Grays */
   --white: #ffffff;
-  --gray-50: #f8f9fb;
-  --gray-100: #f1f3f7;
-  --gray-200: #e4e7ef;
-  --gray-300: #cdd2de;
-  --gray-400: #9aa3b8;
-  --gray-500: #6b7796;
-  --gray-600: #4b5471;
-  --gray-700: #303958;
-  --gray-900: #0f1629;
+  --gray-50:  #f8faf8;
+  --gray-100: #f1f4f1;
+  --gray-200: #e4e9e4;
+  --gray-300: #c8d0c8;
+  --gray-400: #9aa89a;
+  --gray-500: #6b786b;
+  --gray-600: #4b564b;
+  --gray-700: #303830;
+  --gray-900: #0f130f;
 
-  /* Semantic */
-  --primary: var(--navy-800);
-  --primary-dark: var(--navy-900);
-  --accent: var(--green-500);
-  --accent-hover: var(--green-400);
-  --accent-dark: var(--green-600);
-  --text-primary: var(--navy-800);
+  /* Semantic tokens */
+  --primary:        var(--dark-800);
+  --primary-dark:   var(--dark-900);
+  --accent:         var(--green-600);
+  --accent-light:   var(--green-500);
+  --accent-hover:   var(--green-700);
+  --accent-bg:      var(--green-50);
+  --text-primary:   var(--dark-800);
   --text-secondary: var(--gray-600);
-  --text-muted: var(--gray-500);
-  --bg-light: var(--gray-50);
-  --bg-white: var(--white);
-  --border: var(--gray-200);
+  --text-muted:     var(--gray-500);
+  --bg-white:       var(--white);
+  --bg-light:       var(--gray-50);
+  --border:         var(--gray-200);
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(13, 31, 60, 0.08);
-  --shadow-md: 0 4px 16px rgba(13, 31, 60, 0.12);
-  --shadow-lg: 0 8px 32px rgba(13, 31, 60, 0.16);
-  --shadow-xl: 0 20px 60px rgba(13, 31, 60, 0.22);
+  --shadow-sm: 0 1px 4px rgba(10, 10, 10, 0.06);
+  --shadow-md: 0 4px 18px rgba(10, 10, 10, 0.09);
+  --shadow-lg: 0 8px 36px rgba(10, 10, 10, 0.12);
+  --shadow-xl: 0 20px 64px rgba(10, 10, 10, 0.16);
+  --shadow-green: 0 6px 22px rgba(22, 163, 74, 0.28);
 
   /* Radius */
   --radius-sm: 6px;
@@ -58,6 +60,14 @@
 
   /* Transitions */
   --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ─── Backward-compat aliases (navy-* → dark/charcoal) ───
+     Keeps calculators, admin, about, etc. working without change. */
+  --navy-900: var(--dark-900);
+  --navy-800: var(--dark-800);
+  --navy-700: var(--dark-700);
+  --navy-600: var(--dark-600);
+  --navy-500: #3d3d3d;
 }
 
 /* ============
@@ -154,7 +164,7 @@ select {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(27, 138, 71, 0.35);
+  box-shadow: var(--shadow-green);
 }
 
 .btn-outline {
@@ -169,23 +179,36 @@ select {
 }
 
 .btn-ghost {
-  background: rgba(255,255,255,0.1);
-  color: var(--white);
-  border-color: rgba(255,255,255,0.3);
-  backdrop-filter: blur(8px);
+  background: transparent;
+  color: var(--dark-800);
+  border-color: var(--gray-300);
 }
 .btn-ghost:hover {
-  background: rgba(255,255,255,0.2);
-  border-color: rgba(255,255,255,0.5);
+  background: var(--gray-100);
+  border-color: var(--gray-400);
+  transform: translateY(-1px);
 }
 
-.btn-navy {
-  background: var(--navy-800);
+/* Bold black CTA — use for "Get in Touch", "Login" etc */
+.btn-dark {
+  background: var(--dark-800);
   color: var(--white);
-  border-color: var(--navy-800);
+  border-color: var(--dark-800);
+}
+.btn-dark:hover {
+  background: var(--dark-700);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(10, 10, 10, 0.2);
+}
+
+/* Keep btn-navy as alias for btn-dark for backward compat */
+.btn-navy {
+  background: var(--dark-800);
+  color: var(--white);
+  border-color: var(--dark-800);
 }
 .btn-navy:hover {
-  background: var(--navy-700);
+  background: var(--dark-700);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -313,11 +336,11 @@ select.form-control {
   letter-spacing: 0.04em;
 }
 
-.badge-green { background: rgba(27, 138, 71, 0.1); color: var(--green-600); }
-.badge-navy { background: rgba(13, 31, 60, 0.1); color: var(--navy-700); }
+.badge-green { background: var(--green-50); color: var(--green-700); border: 1px solid rgba(22,163,74,0.2); }
+.badge-dark { background: rgba(10,10,10,0.08); color: var(--dark-700); }
 .badge-new { background: #e0f2fe; color: #0369a1; }
 .badge-contacted { background: #fef9c3; color: #854d0e; }
-.badge-closed { background: #f0fdf4; color: #166534; }
+.badge-closed { background: var(--green-50); color: var(--green-700); }
 
 /* ============
    MODAL
@@ -386,19 +409,20 @@ select.form-control {
 
 .section-header .overline {
   display: inline-block;
-  color: var(--accent);
-  font-size: 0.8rem;
+  color: var(--green-700);
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 0.75rem;
-  padding: 0.3rem 0.9rem;
-  background: rgba(27, 138, 71, 0.08);
+  padding: 0.3rem 1rem;
+  background: var(--green-50);
+  border: 1px solid rgba(22,163,74,0.2);
   border-radius: var(--radius-full);
 }
 
 .section-header h2 {
-  color: var(--navy-800);
+  color: var(--dark-800);
   margin-bottom: 1rem;
 }
 

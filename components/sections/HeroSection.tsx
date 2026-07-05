@@ -60,7 +60,7 @@ export default function HeroSection() {
                 Get in Touch
               </button>
               <Link href="/calculators" className="btn btn-ghost btn-lg" id="hero-cta-calculators">
-                Try Calculators
+                Try Calculators →
               </Link>
             </div>
 
