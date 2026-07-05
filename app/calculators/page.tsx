@@ -7,21 +7,30 @@ import SIPCalculator from '@/components/calculators/SIPCalculator';
 import LumpsumCalculator from '@/components/calculators/LumpsumCalculator';
 import FDRDCalculator from '@/components/calculators/FDRDCalculator';
 import EMICalculator from '@/components/calculators/EMICalculator';
-import TermInsuranceCalculator from '@/components/calculators/TermInsuranceCalculator';
+import RegularIncomeCalculator from '@/components/calculators/RegularIncomeCalculator';
+import SWPCalculator from '@/components/calculators/SWPCalculator';
+import GoalSettingCalculator from '@/components/calculators/GoalSettingCalculator';
+import EducationCalculator from '@/components/calculators/EducationCalculator';
+import CompoundInterestCalculator from '@/components/calculators/CompoundInterestCalculator';
+import InflationCalculator from '@/components/calculators/InflationCalculator';
 import RetirementCalculator from '@/components/calculators/RetirementCalculator';
 import styles from './page.module.css';
 
 const tabs = [
-  { id: 'sip', label: 'SIP' },
   { id: 'lumpsum', label: 'Lumpsum' },
-  { id: 'fdrd', label: 'FD / RD' },
-  { id: 'emi', label: 'EMI / Loan' },
-  { id: 'term', label: 'Term Insurance' },
-  { id: 'retirement', label: 'Retirement' },
+  { id: 'regular-income', label: 'Regular Income' },
+  { id: 'sip', label: 'SIP Returns' },
+  { id: 'swp', label: 'SWP' },
+  { id: 'goal-setting', label: 'Goal Setting' },
+  { id: 'retirement', label: 'Retirement Fund' },
+  { id: 'education', label: 'Education' },
+  { id: 'emi', label: 'EMI' },
+  { id: 'compound-interest', label: 'Compound Interest' },
+  { id: 'inflation', label: 'Inflation' },
 ];
 
 export default function CalculatorsPage() {
-  const [active, setActive] = useState('sip');
+  const [active, setActive] = useState('lumpsum');
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -62,12 +71,16 @@ export default function CalculatorsPage() {
 
             {/* Calculator panel */}
             <div className={styles.panel}>
-              {active === 'sip' && <SIPCalculator onAdvisor={() => setModalOpen(true)} />}
               {active === 'lumpsum' && <LumpsumCalculator onAdvisor={() => setModalOpen(true)} />}
-              {active === 'fdrd' && <FDRDCalculator onAdvisor={() => setModalOpen(true)} />}
-              {active === 'emi' && <EMICalculator onAdvisor={() => setModalOpen(true)} />}
-              {active === 'term' && <TermInsuranceCalculator onAdvisor={() => setModalOpen(true)} />}
+              {active === 'regular-income' && <RegularIncomeCalculator onAdvisor={() => setModalOpen(true)} />}
+              {active === 'sip' && <SIPCalculator onAdvisor={() => setModalOpen(true)} />}
+              {active === 'swp' && <SWPCalculator onAdvisor={() => setModalOpen(true)} />}
+              {active === 'goal-setting' && <GoalSettingCalculator onAdvisor={() => setModalOpen(true)} />}
               {active === 'retirement' && <RetirementCalculator onAdvisor={() => setModalOpen(true)} />}
+              {active === 'education' && <EducationCalculator onAdvisor={() => setModalOpen(true)} />}
+              {active === 'emi' && <EMICalculator onAdvisor={() => setModalOpen(true)} />}
+              {active === 'compound-interest' && <CompoundInterestCalculator onAdvisor={() => setModalOpen(true)} />}
+              {active === 'inflation' && <InflationCalculator onAdvisor={() => setModalOpen(true)} />}
             </div>
 
             {/* Estimate note */}
