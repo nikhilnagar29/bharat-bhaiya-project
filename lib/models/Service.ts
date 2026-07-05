@@ -8,6 +8,8 @@ export interface IService extends Document {
   order: number;
   isActive: boolean;
   slug?: string;
+  detailHtml?: string; // Custom HTML content for the service detail page
+  detailCss?: string;  // Custom CSS for the service detail page
 }
 
 const ServiceSchema = new Schema<IService>({
@@ -18,6 +20,8 @@ const ServiceSchema = new Schema<IService>({
   order: { type: Number, default: 0 },
   isActive: { type: Boolean, default: true },
   slug: { type: String },
+  detailHtml: { type: String },
+  detailCss: { type: String },
 }, { timestamps: true });
 
 export default mongoose.models.Service || mongoose.model<IService>('Service', ServiceSchema);

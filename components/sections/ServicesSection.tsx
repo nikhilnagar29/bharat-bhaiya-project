@@ -76,7 +76,6 @@ export default function ServicesSection() {
   }, []);
 
   const handleServiceCTA = (service: Service) => {
-    // Credit Cards → dedicated page
     if (service.slug === 'financial-products') {
       window.location.href = '/credit-cards';
       return;
@@ -107,43 +106,64 @@ export default function ServicesSection() {
                     <div className="skeleton" style={{ height: 14, width: '80%' }} />
                   </div>
                 ))
-              : services.map((service, i) => (
-                  <div key={service._id} className={styles.card}>
-                    <div className={styles.cardIcon}>
-                      <ServiceIcon name={service.title} />
-                    </div>
-                    <h3 className={styles.cardTitle}>{service.title}</h3>
-                    <p className={styles.cardDesc}>{service.description}</p>
-                    {service.subDescription && (
-                      <p className={styles.cardSub}>{service.subDescription}</p>
-                    )}
+              : services.map((service, i) => {
+                  // Show ⓘ button whenever a slug is set — the detail page handles empty state
+                  const hasDetailPage = !!service.slug;
+                  return (
+                    <div key={service._id} className={styles.card}>
+                      {/* ⓘ Info button — top right corner */}
+                      {hasDetailPage && (
+                        <Link
+                          href={`/services/${service.slug}`}
+                          className={styles.infoBtn}
+                          aria-label={`More info about ${service.title}`}
+                          title={`Learn more about ${service.title}`}
+                        >
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                          </svg>
+                        </Link>
+                      )}
 
-                    {/* Credit Cards — extra option */}
-                    {service.slug === 'financial-products' ? (
-                      <div className={styles.cardActions}>
+                      <div className={styles.cardIcon}>
+                        <ServiceIcon name={service.title} />
+                      </div>
+                      <h3 className={styles.cardTitle}>{service.title}</h3>
+                      <p className={styles.cardDesc}>{service.description}</p>
+                      {service.subDescription && (
+                        <p className={styles.cardSub}>{service.subDescription}</p>
+                      )}
+
+                      {/* Actions */}
+                      {service.slug === 'financial-products' ? (
+                        <div className={styles.cardActions}>
+                          <button
+                            className="btn btn-outline btn-sm"
+                            onClick={() => { setSelectedService(service.title); setModalOpen(true); }}
+                            id={`service-inq-${i}`}
+                          >
+                            {service.buttonText}
+                          </button>
+                          <Link href="/credit-cards" className="btn btn-primary btn-sm" id={`service-cc-${i}`}>
+                            Credit Cards
+                          </Link>
+                        </div>
+                      ) : (
                         <button
-                          className="btn btn-outline btn-sm"
-                          onClick={() => { setSelectedService(service.title); setModalOpen(true); }}
-                          id={`service-inq-${i}`}
+                          className="btn btn-primary btn-sm"
+                          onClick={() => handleServiceCTA(service)}
+                          id={`service-cta-${i}`}
+                          style={{ marginTop: 'auto' }}
                         >
                           {service.buttonText}
                         </button>
-                        <Link href="/credit-cards" className="btn btn-primary btn-sm" id={`service-cc-${i}`}>
-                          Credit Cards
-                        </Link>
-                      </div>
-                    ) : (
-                      <button
-                        className="btn btn-primary btn-sm"
-                        onClick={() => handleServiceCTA(service)}
-                        id={`service-cta-${i}`}
-                        style={{ marginTop: 'auto' }}
-                      >
-                        {service.buttonText}
-                      </button>
-                    )}
-                  </div>
-                ))}
+                      )}
+                    </div>
+                  );
+                })}
           </div>
         </div>
       </section>

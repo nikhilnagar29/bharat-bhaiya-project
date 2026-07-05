@@ -14,7 +14,14 @@ export async function PUT(
   const { id } = await params;
   await dbConnect();
   const body = await request.json();
-  const service = await Service.findByIdAndUpdate(id, body, { new: true });
+
+  // Use $set + strict:false to ensure new fields (detailHtml, detailCss) are saved
+  // even if Mongoose has a stale compiled model in cache
+  const service = await Service.findByIdAndUpdate(
+    id,
+    { $set: body },
+    { new: true, runValidators: true, strict: false }
+  );
   if (!service) return NextResponse.json({ error: 'Not found' }, { status: 404 });
   return NextResponse.json(service);
 }
