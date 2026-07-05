@@ -29,6 +29,7 @@ export default function ServicesAdminPage() {
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState('');
   const [activeTab, setActiveTab] = useState<'basic' | 'html'>('basic');
+  const [copiedPrompt, setCopiedPrompt] = useState(false);
 
   const load = () => fetch('/api/admin/services').then((r) => r.json()).then(setServices);
   useEffect(() => { load(); }, []);
@@ -73,6 +74,25 @@ export default function ServicesAdminPage() {
     const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Preview: ${editing.title || 'Service'}</title><style>body{font-family:sans-serif;margin:0;padding:1rem}${css}</style></head><body>${editing.detailHtml}</body></html>`;
     const blob = new Blob([html], { type: 'text/html' });
     window.open(URL.createObjectURL(blob), '_blank');
+  };
+
+  const copyAIPrompt = () => {
+    const prompt = `I am creating a service detail page for my financial advisory website.
+Please write ONLY the HTML content for this page (no <html>, <head>, or <body> tags, just the inner content).
+The content should be about: ${editing?.title || 'Financial Services'}
+
+Follow these styling rules exactly:
+- Use <h1> for the main title, <h2> for major sections, and <h3> for sub-sections.
+- Do NOT use inline styles (no style="...").
+- Use <ul> or <ol> for lists.
+- If you use a table, use standard <table>, <tr>, <th>, and <td> tags.
+- For important callouts or quotes, use <blockquote>.
+- Wrap the content in simple semantic tags. The website's CSS will automatically style them perfectly (e.g., h2 will have a green underline, blockquotes will have a green left-border).
+- Make the content professional, trustworthy, and easy to read.
+`;
+    navigator.clipboard.writeText(prompt);
+    setCopiedPrompt(true);
+    setTimeout(() => setCopiedPrompt(false), 2000);
   };
 
   return (
@@ -179,12 +199,17 @@ export default function ServicesAdminPage() {
                 </div>
 
                 <div className="form-group" style={{ marginBottom: '1rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem', flexWrap: 'wrap', gap: '0.5rem' }}>
                     <label className="form-label" style={{ margin: 0 }}>Detail HTML</label>
-                    <button type="button" className={editorStyles.previewBtn} onClick={previewHtml}
-                      disabled={!editing.detailHtml}>
-                      ▶ Preview in new tab
-                    </button>
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      <button type="button" className={editorStyles.aiPromptBtn} onClick={copyAIPrompt}>
+                        {copiedPrompt ? '✓ Copied!' : '✨ Copy AI Prompt'}
+                      </button>
+                      <button type="button" className={editorStyles.previewBtn} onClick={previewHtml}
+                        disabled={!editing.detailHtml}>
+                        ▶ Preview in new tab
+                      </button>
+                    </div>
                   </div>
                   <textarea
                     className={`form-control ${editorStyles.codeEditor}`}
